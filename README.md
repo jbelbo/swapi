@@ -18,8 +18,7 @@ This application allows users to search for Star Wars characters and movies usin
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/jbelbo/swapi
-cd swapi
+git clone https://github.com/jbelbo/swapi && cd swapi
 ```
 
 2. Create the SQLite database file:
@@ -27,19 +26,24 @@ cd swapi
 touch backend/database/database.sqlite
 ```
 
-3. Start the application using Docker Compose:
+3. Copy the environment files:
 ```bash
-docker-compose up -d
+cp backend/.env.example backend/.env && cp frontend/.env.example frontend/.env
 ```
 
-4. Run the database migrations:
+4. Build and start the application:
 ```bash
-docker-compose exec backend php artisan migrate
+docker compose up -d
 ```
 
-5. Generate the application key:
+5. Install PHP dependencies
 ```bash
-docker-compose exec backend php artisan key:generate
+docker compose exec backend composer install
+```
+
+6. Run the database migrations:
+```bash
+docker compose exec backend php artisan migrate
 ```
 
 The application should now be running at:
@@ -60,39 +64,43 @@ The application should now be running at:
 - Database: SQLite
 - Container: Docker
 
+## Troubleshooting
+
+### Missing Vendor Directory
+If you see an error about missing vendor/autoload.php, rebuild the containers:
+```bash
+docker compose down -v
+docker compose build --no-cache
+docker compose up -d
+docker compose exec backend composer install
+```
+
+### Permission Issues
+If you encounter permission issues with storage or cache directories:
+```bash
+docker compose exec backend chmod -R 775 storage bootstrap/cache
+```
+
+### Container Issues
+If you need to rebuild the containers:
+```bash
+docker compose down
+docker compose build --no-cache
+docker compose up -d
+```
+
 ## Development
 
 To run the application in development mode:
 
 1. Start the containers:
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 2. The application uses volume mounts, so any changes to the code will be reflected immediately.
 
 3. To view logs:
 ```bash
-docker-compose logs -f
+docker compose logs -f
 ```
-
-## Testing
-
-To run the tests:
-
-```bash
-# Frontend tests
-docker-compose exec frontend npm test
-
-# Backend tests
-docker-compose exec backend php artisan test
-```
-
-**Notes:**
-- Backend tests use an in-memory SQLite database and automatically run all migrations before each test suite.
-- If you encounter database errors, ensure the file `backend/database/database.sqlite` exists and has the correct permissions.
-- If you see permission errors, you may need to run:
-  ```bash
-  sudo chown -R $USER:$USER backend/database backend/storage
-  sudo chmod -R 775 backend/database backend/storage
-  ``` 
