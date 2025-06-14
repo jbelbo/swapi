@@ -1,0 +1,53 @@
+:root {
+  /* Colors */
+  --emerald: #089954;
+  --emerald-hover: #00b34a;
+  --secondary-color: #2196f3;
+  --background-color: #f5f5f5;
+  --text-color: #333333;
+  --text-color-light: #666666;
+  --pinkish-grey: #c4c4c4;
+  --error-color: #f44336;
+  --border-color: var(--pinkish-grey);
+  --green-teal: #00c853;
+  --warm-grey-75: #dadada;
+  
+  /* Button Colors */
+  --button-color: var(--green-teal);
+  --button-hover-color: var(--emerald);
+  
+  /* Common Styles */
+  --card-border: solid 0.5px var(--pinkish-grey);
+  --card-shadow: 0 0.5px 1px 0 var(--pinkish-grey);
+  
+  /* Button Styles */
+  --button-padding: 8px 24px;
+  --button-font-size: 14px;
+  --button-border-radius: 8.5px;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Typography */
+  --font-family: 'Montserrat', sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  
+  /* Layout */
+  --container-max-width: 1200px;
+  --header-height: 60px;
+  
+  /* Border radius */
+  --border-radius: 8px;
+  
+  /* Box shadows */
+  --box-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --box-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} 
